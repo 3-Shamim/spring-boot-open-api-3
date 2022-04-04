@@ -17,8 +17,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/employees")
-@SecurityRequirement(name = "Basic Security")
-@SecurityRequirement(name = "Bearer Security")
+@SecurityRequirement(name = "basic_security")
+@SecurityRequirement(name = "bearer_security")
 public class EmployeeController {
 
     @GetMapping(value = "")
