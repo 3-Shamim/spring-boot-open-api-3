@@ -32,17 +32,18 @@ public class APIKeyFilterRequest extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String apiKey = request.getHeader("api-key");
+        final String xToken = request.getHeader("x-token");
 
         log.info("API key authentication processing for {}", request.getRequestURL());
 
         // Once we get the token validate it.
-        if (SecurityContextHolder.getContext().getAuthentication() == null && StringUtils.isNotEmpty(apiKey)) {
+        if (SecurityContextHolder.getContext().getAuthentication() == null && (StringUtils.isNotEmpty(apiKey) || StringUtils.isNotEmpty(xToken))) {
 
-            log.info("Try to authenticate with API Key.");
+            log.info("Try to authenticate with API Key / X-Token.");
 
             // if token is valid configure Spring Security to manually set
             // authentication
-            if (apiKey.equals("84bfd081-28f4-44fd-81d7-311a5bce1ba4")) {
+            if (("123").equals(apiKey) || ("123").equals(xToken)) {
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         new HashMap<>() {{
@@ -59,7 +60,7 @@ public class APIKeyFilterRequest extends OncePerRequestFilter {
                 // Spring Security Configurations successfully.
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
-                log.info("Successfully authenticate with API Key.");
+                log.info("Successfully authenticate with API Key / X-Token.");
 
             }
         }

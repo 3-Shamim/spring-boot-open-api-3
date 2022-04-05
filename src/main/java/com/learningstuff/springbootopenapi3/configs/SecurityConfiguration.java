@@ -33,9 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.cors().disable().csrf().disable();
+        http.cors().and().csrf().disable();
 
-        http.formLogin().disable().httpBasic().disable();
+        http.formLogin().and().httpBasic().disable();
 
         http.exceptionHandling()
                 .authenticationEntryPoint(myAuthenticationEntryPoint)

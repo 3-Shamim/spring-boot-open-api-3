@@ -17,8 +17,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/employees")
-@SecurityRequirement(name = "basic_security")
-@SecurityRequirement(name = "bearer_security")
+@SecurityRequirement(name = "basic-security")
+@SecurityRequirement(name = "bearer-security")
+@SecurityRequirement(name = "api-key")
+@SecurityRequirement(name = "x-token")
 public class EmployeeController {
 
     @GetMapping(value = "")
@@ -32,8 +34,8 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/create")
-    public Employee create(@RequestBody Employee user) {
-        return user;
+    public Employee create(@RequestBody Employee employee) {
+        return employee;
     }
 
 }

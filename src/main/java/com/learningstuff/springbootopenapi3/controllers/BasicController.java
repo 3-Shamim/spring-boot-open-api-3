@@ -17,16 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "")
 public class BasicController {
 
-    @SecurityRequirement(name = "basic_security")
+    @SecurityRequirement(name = "basic-security")
     @GetMapping(value = "/basic")
     public String basic() {
         return "Basic Security";
     }
 
+    @SecurityRequirement(name = "bearer-security")
     @GetMapping(value = "/bearer")
-    @SecurityRequirement(name = "bearer_security")
     public String bearer() {
         return "Bearer Security";
+    }
+
+    @SecurityRequirement(name = "api-key")
+    @GetMapping(value = "/api-key")
+    public String apiKey() {
+        return "Api Key Security";
+    }
+
+    @SecurityRequirement(name = "x-token")
+    @GetMapping(value = "/x-token")
+    public String xToken() {
+        return "X-Token Security";
     }
 
 }
